@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Attendee } from './attendee.entity';
 
 // @Entity('events') -- Giving name for the table
 // @Entity('events', {name: events}) -- Giving name and other options for the table
@@ -19,4 +20,7 @@ export class Event {
 
   @Column()
   address: string;
+
+  @OneToMany(() => Attendee, (attendee) => attendee.event)
+  attendees: Attendee[];
 }
